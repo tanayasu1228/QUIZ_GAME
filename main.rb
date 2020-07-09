@@ -1,6 +1,7 @@
 require "./messages"
 require "./nazonazo_mode"
 require "./dog_mode"
+require "./controller"
 
 class Game
 
@@ -55,22 +56,17 @@ class Game
 
 end
 
-  Messages.start_message
 
-  while
-    mode_num = gets.chomp.to_i
-    case mode_num
-    when 1
-      puts "なぞなぞを始めるよ"
-    when 2
-      puts "わんちゃん知識クイズを始めるよ"
-    else
-      Messages.error_message
-      puts "1 or 2 で選択してね"
-      next
-    end
-    break
-  end
+
+
+
+
+
+
+  Messages.start_message
+  controller = Controller.new
+  controller.contents_index
+  mode_num = controller.contents
 
   Messages.game_count_message
   while
