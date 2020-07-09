@@ -62,32 +62,28 @@ end
 
 
 
-
-  Messages.start_message
   controller = Controller.new
-  controller.contents_index
-  mode_num = controller.contents
+  index = controller.contents_index
 
-  Messages.game_count_message
+  Messages.start_message(index)
+  mode_num, @i = controller.contents
+  i = @i
+
+  file = controller.files_index
+  data_length = file.length
+
+  Messages.game_count_message(index, i, data_length)
   while
     count_num = gets.chomp.to_i
     if count_num.between?(1, 10)
     else
       Messages.error_message
-      # puts "入力は 1 以上 10 以内で入力してね"
       next
     end
     break
   end
 
-
-  if mode_num == 1
-    content = nazonazo_mode
-  elsif mode_num == 2
-    content = dog_mode
-  end
-
-  game = Game.new(mode_num, count_num, content)
+  game = Game.new(mode_num, count_num, file)
   game.create_game
   correct_count = game.question
   Messages.result_message(count_num, correct_count)

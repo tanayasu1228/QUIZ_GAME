@@ -1,13 +1,30 @@
 
 class Controller
 
+  # ゲーム追加手順
+  # 1. 問題データを別途作成
+  # 2. @index配列内の下へ名称を追加
+  # 3. contentsメソッドへ" when 番号" と"content"を追記
+
+  
   def contents_index
     @index = [
       "なぞなぞ",
       "わんちゃん知識クイズ",
-      "【小学校問題】この漢字読めるかな？クイズ",
-      "【中学校問題】この漢字読めるかな？クイズ",
+      "【小学校問題】この漢字読めるかな？",
+      "【中学校問題】この漢字読めるかな？"
     ]
+    return @index
+  end
+
+  def files_index
+    @files = [
+      nazonazo_mode,
+      dog_mode
+      
+    ]
+    file = @files[@i]
+    return file
   end
 
   def contents
@@ -27,7 +44,7 @@ class Controller
         Messages.error_message
         next
       end
-      return mode_num
+      return mode_num, @i
       break
     end
   end

@@ -2,16 +2,18 @@ module Messages
 
   module_function
 
-  def start_message
+  def start_message(content_name)
+    
+    puts "-----------  QUIZ 選択  -----------"
+    content_name.each.with_index(1) do |content, i|
+      puts "#{i} ： #{content}"
+    end
     puts <<~TEXT
-    --------  QUIZ 選択  --------
-    1 ： なぞなぞ
-    2 ： わんちゃん知識クイズ
 
-    ※ 何で遊びますか？
-       1 or 2 で選んでね！
-    --------    --------
+    ※ 何で遊びますか？番号を入力してね！
+    -----------------------------------
     TEXT
+
   end
 
   def content_name_message(content_name)
@@ -20,13 +22,9 @@ module Messages
 
   
 
-  def game_count_message
-    puts <<~TEXT
-
-    なぞなぞの数は 1 ~ 10 問の間で選べるよ！
-    ※ 1 ~ 10 の数字を入力してね！
-
-    TEXT
+  def game_count_message(content_name, i, data_length)
+      puts "#{content_name[i]}の問題数は 全部で#{data_length}問まで選択できるよ！"
+    puts "※ やりたい問題数を数字で入力してね！"
     
   end
 
