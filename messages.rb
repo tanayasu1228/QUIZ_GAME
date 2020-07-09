@@ -14,8 +14,8 @@ module Messages
     TEXT
   end
 
-  def quiz_name_message(quiz_name)
-    puts "#{quiz_name}を始めるよ"
+  def content_name_message(content_name)
+    puts "#{content_name}を始めるよ"
   end
 
   
