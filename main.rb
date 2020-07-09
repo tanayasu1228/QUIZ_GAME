@@ -1,5 +1,6 @@
 require "./messages"
 require "./nazonazo_mode"
+require "./dog_mode"
 
 class Game
 
@@ -15,30 +16,38 @@ class Game
 
 
   def question
-
+    q_num = 1
+    correct_answer = 0
     case @mode
     when 1
       @game.each do |game_data|
-        puts "問題 ： #{game_data[:question]}"
+        puts "問題NO.#{q_num}： #{game_data[:question]}"
         answer = gets.chomp
       if answer == game_data[:answer]
           puts '正解です'
+          correct_answer += 1
       else
           puts '残念' 
           puts "正解は#{game_data[:answer]}でした"
       end
+      q_num += 1
       end
+      return correct_answer
+
     when 2
       @game.each do |game_data|
-        puts "問題 ： #{game_data[:question]}"
+        puts "問題NO.#{q_num}： #{game_data[:question]}"
         answer = gets.chomp
       if answer == game_data[:answer]
           puts '正解です'
+          correct_answer += 1
       else
           puts '残念' 
           puts "正解は#{game_data[:answer]}でした"
       end
+      q_num += 1
       end
+      return correct_answer
     end
 
   end
@@ -85,4 +94,4 @@ end
   game = Game.new(mode_num, count_num, content)
   game.create_game
   correct_count = game.question
-  Messages.result_message
+  Messages.result_message(count_num, correct_count)

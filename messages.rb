@@ -30,8 +30,14 @@ module Messages
     
   end
 
-  def result_message
-    puts "ゲーム終了"
+  def result_message(count, correct)
+    puts <<~TEXT
+
+              【 正解数の発表 】  
+    #{count} 問中 #{correct} 問 正解でした！
+
+    ゲーム終了
+    TEXT
   end
 
   def error_message
