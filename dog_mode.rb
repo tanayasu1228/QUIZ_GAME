@@ -6,4 +6,4 @@ def dog_mode
       # {question: "", hint:"", answer: "", answer_show: ""},
 
     ]
-  end
+end

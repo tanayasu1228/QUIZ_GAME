@@ -2,36 +2,45 @@
 class Controller
 
   # ゲーム追加手順
-  # 1. 問題データを別途作成
+  # 1. 問題データを別途作成(requireを忘れずに)
   # 2. @index配列内の下へ名称を追加
   # 3. contentsメソッドへ" when 番号" と"content"を追記
-
+  # files_indexメソッドへデータファイル名、質問表示形式番号（question_styleメソッドのwhen番号になる）を記述する
   
   def contents_index
     @index = [
-      "なぞなぞ",
-      "わんちゃん知識クイズ",
-      "【小学校問題】この漢字読めるかな？",
-      "【中学校問題】この漢字読めるかな？"
+      "【遊び】なぞなぞ",
+      "【遊び】わんちゃん知識クイズ",
+      "【遊び】アニメ知識クイズ",
+      "【学習】RUBY 虫食いコード"
     ]
     return @index
   end
 
   def files_index
     @files = [
-      nazonazo_mode,
-      dog_mode
-      
+      {file_name: nazonazo_mode, question_style: 1},
+      {file_name: dog_mode, question_style: 1},
+      {file_name: anime_mode, question_style: 2},
+      {file_name: english_mode, question_style: 2}
+
     ]
-    file = @files[@i]
+    files_data = @files.map { |f| f[:file_name]}
+    file = files_data[@i]
     return file
+  end
+
+  def style_inspect
+    style_data = @files.map { |s| s[:question_style]}
+    style = style_data[@i]
+    return style
   end
 
   def contents
     while
-      mode_num = gets.chomp.to_i
-      @i = mode_num -1
-      case mode_num
+      format_num = gets.chomp.to_i
+      @i = format_num -1
+      case format_num
       when 1
         content
       when 2
@@ -44,16 +53,16 @@ class Controller
         Messages.error_message
         next
       end
-      return mode_num, @i
+      return @i
+      # return format_num, @i
       break
     end
   end
 
   def content
     content_name = @index[@i]
-    Messages.content_name_message(content_name)
+    return content_name
   end
-
 
 
 end
