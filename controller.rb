@@ -133,7 +133,6 @@ class Controller
     while
       answer = gets.chomp.to_i
       if answer == game_data[:answer_num]
-
         Messages.correct_answer_message
         in_correct += 1
           
