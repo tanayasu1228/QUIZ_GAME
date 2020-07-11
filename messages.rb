@@ -37,6 +37,15 @@ module Messages
     TEXT
   end
 
+  def correct_answer_message
+    puts <<~TEXT
+
+    正解！
+    -----------------------------------
+    
+    TEXT
+  end
+
   def result_message(count, correct)
     puts <<~TEXT
 
