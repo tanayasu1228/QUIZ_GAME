@@ -3,16 +3,18 @@ module Messages
   module_function
 
   def start_message(content_name)
+    puts <<~TEXT
+
+    ==========  QUIZ 選択  ==========
     
-    puts "-----------  QUIZ 選択  -----------"
-    puts ""
+    TEXT
     content_name.each.with_index(1) do |content, i|
       puts "#{i} ： #{content}"
     end
     puts <<~TEXT
 
     ※ 何で遊びますか？番号を入力してね！
-    -----------------------------------
+    =================================
     TEXT
 
   end
@@ -20,12 +22,10 @@ module Messages
   def content_name_message(content_name)
     puts <<~TEXT
     #{content_name}を始めるよ
-    -----------------------------------
 
+    -----------------------------------
     TEXT
   end
-
-  
 
   def game_count_message(content_name, i, data_length)
     puts <<~TEXT
@@ -40,18 +40,20 @@ module Messages
   def result_message(count, correct)
     puts <<~TEXT
 
-              【 正解数の発表 】  
+    ========== 【 正解数の発表 】 ==========
     #{count} 問中 #{correct} 問 正解でした！
 
-    ゲーム終了
+    おつかれさまでした！ゲーム終了
+    ========================================
     TEXT
   end
 
   def error_message
     puts <<~TEXT
-    ------------------------------------
+
     error :  不適切な入力です
              半角数字で再度入力して下さい
+
     TEXT
   end
 
