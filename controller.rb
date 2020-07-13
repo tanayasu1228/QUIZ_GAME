@@ -16,7 +16,6 @@ class Controller
       "【遊び】アニメ知識クイズ",
       "【学習】RUBY メソッド選択クイズ（間違っていたらごめんなさい）"
     ]
-    return @index
   end
 
   # ファイルの一覧を生成（ゲーム選択画面 一覧の順番とする）
@@ -33,7 +32,6 @@ class Controller
     files_data = @files.map { |f| f[:file_name]}
     # 配列から取得したいファイルデータをインデックス番号によって決定
     file = files_data[@i]
-    return file
   end
 
   # 質問＆回答形式を決定させる
@@ -42,7 +40,6 @@ class Controller
     style_data = @files.map { |s| s[:question_style]}
     # 配列から取得したいquestion_styleをインデックス番号によって決定
     style = style_data[@i]
-    return style
   end
 
   # 入力データに応じてインデックス番号を取得
@@ -73,7 +70,6 @@ class Controller
   # インデックス番号に対して選択したゲーム名を取得
   def content
     content_name = @index[@i]
-    return content_name
   end
 
   # 出題＆回答形式 question_style when 1 の処理
