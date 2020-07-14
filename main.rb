@@ -1,29 +1,28 @@
 require "./messages"
-require "./controller"
+require "./quiz"
 require "./game"
-# require "./quiz"
+# require "./data"
 require "./nazo_easy_mode"
 require "./nazo_hard_mode"
 require "./dog_mode"
 require "./anime_mode"
 require "./ruby_mode"
 
-# コントローラーを生成
-controller = Controller.new
+quiz = Quiz.new
 # ゲーム選択画面 一覧を取得＆表示
-index = controller.contents_index
+index = quiz.contents_index
 Messages.start_message(index)
 
 # 入力データに応じてインデックス番号を取得
-@i = controller.contents
+@i = quiz.contents
 i = @i
 
 # 読み込むファイルデータを決定＆変数に格納
-file = controller.files_index
+file = quiz.files_index
 # ファイル内の数を取得＆変数に格納
 data_length = file.length
 # 質問＆回答形式を決定して変数に格納
-style = controller.style_inspect
+style = quiz.style_inspect
 Messages.game_count_message(index, i, data_length)
 
 # 問題数の選択
@@ -38,7 +37,7 @@ while
 end
 
 # インデックス番号に対して選択したゲーム名を取得＆表示
-content_name = controller.content
+content_name = quiz.content
 Messages.content_name_message(content_name)
 
 # ゲームの生成

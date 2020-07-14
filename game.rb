@@ -1,4 +1,5 @@
-
+# require "./data"
+require "./quiz"
 
 class Game
   # ゲームの生成
@@ -10,7 +11,7 @@ class Game
   end
 
   # データ内容に応じて質問＆回答形式を決定させる
-  # Controllerクラスのfiles_indexにあるplayの番号を読み込んでいる
+  # Quizクラスのfiles_indexにあるplayの番号を読み込んでいる
   def play
     q_num = 1
     correct_answer = 0
@@ -25,8 +26,9 @@ class Game
         #{game_data[:sub]}
         TEXT
 
-        controller = Controller.new
-        correct_answer = controller.answer_style1(game_data, q_num, correct_answer)
+        # quiz = Quiz.new
+        # correct_answer = quiz.answer_style1(game_data, q_num, correct_answer)
+        answer_style1(game_data, q_num, correct_answer)
         q_num += 1
       end
       return correct_answer
@@ -49,12 +51,100 @@ class Game
           puts "#{i} ： #{show}"
         end
 
-        controller = Controller.new
-        correct_answer = controller.answer_style2(game_data, game_show, show_length, correct_answer)
+        # quiz = Quiz.new
+        # correct_answer = quiz.answer_style2(game_data, game_show, show_length, correct_answer)
+        answer_style2(game_data, game_show, show_length, correct_answer)
         q_num += 1
       end 
       return correct_answer
     end
   end
+
+  # 出題＆回答形式 play when 1 の処理
+  def answer_style1(game_data, q_num, correct_answer)
+    in_correct = correct_answer
+    while
+      answer = gets.chomp
+      if answer == game_data[:answer]
+        Messages.correct_answer_message
+        in_correct += 1
+
+      elsif answer == "hint"
+        puts <<~TEXT
+        ヒント： #{game_data[:hint]}
+        
+        問題#{q_num}： #{game_data[:question]}
+        ※ 2回目のhintをすると不正解になっちゃうよ！ 頑張って考えてみてね！
+
+         "#{game_data[:sub]}"
+         TEXT
+        answer = gets.chomp
+        if answer == game_data[:answer]
+          Messages.correct_answer_message
+          in_correct += 1
+        else
+          puts <<~TEXT
+
+          2回目の hint はできないよ！
+          正解は #{game_data[:answer]}でした
+
+          解説： #{game_data[:answer_show]}
+          -----------------------------------
+
+          TEXT
+        end
+
+      else
+          puts <<~TEXT
+
+          残念
+          正解は #{game_data[:answer]}でした
+
+          解説： #{game_data[:answer_show]}
+          -----------------------------------
+
+          TEXT
+      end
+      break
+    end
+      return in_correct
+  end
+
+  # 出題＆回答形式 play when 2 の処理
+  def answer_style2(game_data, game_show, show_length, correct_answer)
+    in_correct = correct_answer
+    choice = (1..show_length)
+    while
+      answer = gets.chomp.to_i
+      if answer == game_data[:answer_num]
+        Messages.correct_answer_message
+        in_correct += 1
+          
+      elsif choice.include?(answer) && answer != game_data[:answer_num]
+        puts <<~TEXT
+
+        残念
+        正解は #{game_data[:answer]}でした
+        -----------------------------------
+        
+
+        TEXT
+
+      else
+        Messages.error_message
+        next
+      end
+      break
+    end
+    return in_correct
+  end
+
+
+
+
+
+
+
+
 
 end

@@ -1,5 +1,5 @@
 
-class Controller
+class Quiz
 
   # ゲーム追加手順
   # 1. 問題データを別途作成(requireを忘れずに)
@@ -70,85 +70,6 @@ class Controller
   # インデックス番号に対して選択したゲーム名を取得
   def content
     content_name = @index[@i]
-  end
-
-  # 出題＆回答形式 play when 1 の処理
-  def answer_style1(game_data, q_num, correct_answer)
-    in_correct = correct_answer
-    while
-      answer = gets.chomp
-      if answer == game_data[:answer]
-        Messages.correct_answer_message
-        in_correct += 1
-
-      elsif answer == "hint"
-        puts <<~TEXT
-        ヒント： #{game_data[:hint]}
-        
-        問題#{q_num}： #{game_data[:question]}
-        ※ 2回目のhintをすると不正解になっちゃうよ！ 頑張って考えてみてね！
-
-         "#{game_data[:sub]}"
-         TEXT
-        answer = gets.chomp
-        if answer == game_data[:answer]
-          Messages.correct_answer_message
-          in_correct += 1
-        else
-          puts <<~TEXT
-
-          2回目の hint はできないよ！
-          正解は #{game_data[:answer]}でした
-
-          解説： #{game_data[:answer_show]}
-          -----------------------------------
-
-          TEXT
-        end
-
-      else
-          puts <<~TEXT
-
-          残念
-          正解は #{game_data[:answer]}でした
-
-          解説： #{game_data[:answer_show]}
-          -----------------------------------
-
-          TEXT
-      end
-      break
-    end
-      return in_correct
-  end
-
-  # 出題＆回答形式 play when 2 の処理
-  def answer_style2(game_data, game_show, show_length, correct_answer)
-    in_correct = correct_answer
-    choice = (1..show_length)
-    while
-      answer = gets.chomp.to_i
-      if answer == game_data[:answer_num]
-        Messages.correct_answer_message
-        in_correct += 1
-          
-      elsif choice.include?(answer) && answer != game_data[:answer_num]
-        puts <<~TEXT
-
-        残念
-        正解は #{game_data[:answer]}でした
-        -----------------------------------
-        
-
-        TEXT
-
-      else
-        Messages.error_message
-        next
-      end
-      break
-    end
-    return in_correct
   end
 
 end
