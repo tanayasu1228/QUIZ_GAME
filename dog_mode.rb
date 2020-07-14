@@ -1,5 +1,5 @@
 def dog_mode
-  # question_styleは 2：選択形式
+  # playは 2：選択形式
     
   # {question: "出題内容", answer: "正回答", dummy1: "誤回答", dummy2: "誤回答", answer_num: question:を除いて、正回答は左から何番目か},
     [

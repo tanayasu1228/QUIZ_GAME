@@ -1,5 +1,5 @@
 def nazo_easy_mode
-  # question_styleは 1：入力形式
+  # playは 1：入力形式
   # {question: "", sub:"", hint:"", answer: "", answer_show: ""}
     [
       {question: "ふかければあさくて あさければふかいものは な〜んだ？", sub:"ひらがなで入力してね", hint:"みずをくみあげるものだよ", answer: "いど", answer_show: "みずのりょうでふかささがかわるからだよ！"},

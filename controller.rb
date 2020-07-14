@@ -5,7 +5,7 @@ class Controller
   # 1. 問題データを別途作成(requireを忘れずに)
   # 2. @index配列内の下へ名称を追加
   # 3. contentsメソッドへ" when 番号" と"content"を追記
-  # files_indexメソッドへデータファイル名、質問表示形式番号（question_styleメソッドのwhen番号になる）を記述する
+  # files_indexメソッドへデータファイル名、質問表示形式番号（playメソッドのwhen番号になる）を記述する
   
   # ゲーム選択画面 一覧
   def contents_index
@@ -21,11 +21,11 @@ class Controller
   # ファイルの一覧を生成（ゲーム選択画面 一覧の順番とする）
   def files_index
     @files = [
-      {file_name: nazo_easy_mode, question_style: 1},
-      {file_name: nazo_hard_mode, question_style: 1},
-      {file_name: dog_mode, question_style: 2},
-      {file_name: anime_mode, question_style: 2},
-      {file_name: ruby_mode, question_style: 2}
+      {file_name: nazo_easy_mode, play: 1},
+      {file_name: nazo_hard_mode, play: 1},
+      {file_name: dog_mode, play: 2},
+      {file_name: anime_mode, play: 2},
+      {file_name: ruby_mode, play: 2}
 
     ]
     # ハッシュ内の:file_nameを配列として格納
@@ -36,9 +36,9 @@ class Controller
 
   # 質問＆回答形式を決定させる
   def style_inspect
-    # ハッシュ内の:question_styleを配列として格納
-    style_data = @files.map { |s| s[:question_style]}
-    # 配列から取得したいquestion_styleをインデックス番号によって決定
+    # ハッシュ内の:playを配列として格納
+    style_data = @files.map { |s| s[:play]}
+    # 配列から取得したいplayをインデックス番号によって決定
     style = style_data[@i]
   end
 
@@ -72,7 +72,7 @@ class Controller
     content_name = @index[@i]
   end
 
-  # 出題＆回答形式 question_style when 1 の処理
+  # 出題＆回答形式 play when 1 の処理
   def answer_style1(game_data, q_num, correct_answer)
     in_correct = correct_answer
     while
@@ -122,7 +122,7 @@ class Controller
       return in_correct
   end
 
-  # 出題＆回答形式 question_style when 2 の処理
+  # 出題＆回答形式 play when 2 の処理
   def answer_style2(game_data, game_show, show_length, correct_answer)
     in_correct = correct_answer
     choice = (1..show_length)

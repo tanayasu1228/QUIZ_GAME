@@ -1,5 +1,5 @@
 def nazo_hard_mode
-  # question_styleは 1：入力形式
+  # playは 1：入力形式
   # {question: "", sub:"", hint:"", answer: "", answer_show: ""}
     [
       {question: "体じゅう不満でできている生き物って な〜んだ？", sub:"半角で入力してね", hint:"英語の問題", answer: "human", answer_show: "人間を英語にするんだよ"},
