@@ -1,5 +1,9 @@
-# require "./data"
-require "./quiz"
+# require "./quiz"
+require "./nazo_easy_mode"
+require "./nazo_hard_mode"
+require "./dog_mode"
+require "./anime_mode"
+require "./ruby_mode"
 
 class Game
   # ゲームの生成
@@ -27,8 +31,8 @@ class Game
         TEXT
 
         # quiz = Quiz.new
-        # correct_answer = quiz.answer_style1(game_data, q_num, correct_answer)
-        answer_style1(game_data, q_num, correct_answer)
+        # correct_answer = quiz.input_play(game_data, q_num, correct_answer)
+        input_play(game_data, q_num, correct_answer)
         q_num += 1
       end
       return correct_answer
@@ -52,8 +56,8 @@ class Game
         end
 
         # quiz = Quiz.new
-        # correct_answer = quiz.answer_style2(game_data, game_show, show_length, correct_answer)
-        answer_style2(game_data, game_show, show_length, correct_answer)
+        # correct_answer = quiz.selection_play(game_data, game_show, show_length, correct_answer)
+        selection_play(game_data, game_show, show_length, correct_answer)
         q_num += 1
       end 
       return correct_answer
@@ -61,7 +65,7 @@ class Game
   end
 
   # 出題＆回答形式 play when 1 の処理
-  def answer_style1(game_data, q_num, correct_answer)
+  def input_play(game_data, q_num, correct_answer)
     in_correct = correct_answer
     while
       answer = gets.chomp
@@ -111,7 +115,7 @@ class Game
   end
 
   # 出題＆回答形式 play when 2 の処理
-  def answer_style2(game_data, game_show, show_length, correct_answer)
+  def selection_play(game_data, game_show, show_length, correct_answer)
     in_correct = correct_answer
     choice = (1..show_length)
     while
@@ -138,13 +142,4 @@ class Game
     end
     return in_correct
   end
-
-
-
-
-
-
-
-
-
 end
