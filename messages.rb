@@ -2,14 +2,14 @@ module Messages
 
   module_function
 
-  def start_message(content_name)
+  def start_message(selected_quiz)
     puts <<~TEXT
 
     ==========  QUIZ 選択  ==========
     
     TEXT
-    content_name.each.with_index(1) do |content, i|
-      puts "#{i} ： #{content}"
+    selected_quiz.each.with_index(1) do |quiz_name, i|
+      puts "#{i} ： #{quiz_name}"
     end
     puts <<~TEXT
 

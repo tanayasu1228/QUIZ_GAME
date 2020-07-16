@@ -1,7 +1,9 @@
 require "./messages"
 require "./quiz"
 require "./game"
-# require "./data"
+require "./data"
+
+
 require "./nazo_easy_mode"
 require "./nazo_hard_mode"
 require "./dog_mode"
@@ -9,21 +11,21 @@ require "./anime_mode"
 require "./ruby_mode"
 
 quiz = Quiz.new
-# ゲーム選択画面 一覧を取得＆表示
-index = quiz.contents_index
-Messages.start_message(index)
+
+# ゲーム選択画面を表示
+selected_quiz = quiz.contents_display
+Messages.start_message(selected_quiz)
 
 # 入力データに応じてインデックス番号を取得
-@i = quiz.contents
-i = @i
+format_index_num = quiz.contents
 
 # 読み込むファイルデータを決定＆変数に格納
-file = quiz.files_index
+quiz_file = quiz.files_index
 # ファイル内の数を取得＆変数に格納
-data_length = file.length
+data_length = quiz_file.length
 # 質問＆回答形式を決定して変数に格納
-style = quiz.style_inspect
-Messages.game_count_message(index, i, data_length)
+quiz_style = quiz.play_format_check
+Messages.game_count_message(selected_quiz, format_index_num, data_length)
 
 # 問題数の選択
 while
@@ -41,7 +43,7 @@ content_name = quiz.content
 Messages.content_name_message(content_name)
 
 # ゲームの生成
-game = Game.new(style, count_num, file)
+game = Game.new(quiz_style, count_num, quiz_file)
 
 # 正解数を結果として表示
 correct_count = game.play
