@@ -19,11 +19,11 @@ Messages.start_message(selected_quiz)
 # 入力データに応じてインデックス番号を取得
 format_index_num = quiz.contents
 
-# 読み込むファイルデータを決定＆変数に格納
+# 読み込むファイルデータを決定
 quiz_file = quiz.files_index
-# ファイル内の数を取得＆変数に格納
+# ファイル内の数を取得
 data_length = quiz_file.length
-# 質問＆回答形式を決定して変数に格納
+# 質問＆回答形式を決定
 quiz_style = quiz.play_format_check
 Messages.game_count_message(selected_quiz, format_index_num, data_length)
 
@@ -38,11 +38,10 @@ while
   break
 end
 
-# インデックス番号に対して選択したゲーム名を取得＆表示
+# 選択したゲーム名を取得＆表示
 content_name = quiz.content
 Messages.content_name_message(content_name)
 
-# ゲームの生成
 game = Game.new(quiz_style, count_num, quiz_file)
 
 # 正解数を結果として表示
